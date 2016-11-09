@@ -1,0 +1,23 @@
+# PostgreSQL. Versions 9.5 and up are supported.
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 50
+  username: postgres
+  password: password
+  host: localhost
+
+development:
+  <<: *default
+  database: techid_dev
+
+#production:
+#  <<: *default
+#  database: landfinancing_dev
+
+test:
+  <<: *default
+  database: techid_test
+
