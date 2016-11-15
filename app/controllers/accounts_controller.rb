@@ -1,4 +1,6 @@
 class AccountsController < ApplicationController
+  before_action :authenticate_account, except: :create
+
   def show
     render json: Account.find(params[:id])
   end

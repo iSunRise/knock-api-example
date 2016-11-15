@@ -1,4 +1,5 @@
 class Account < ApplicationRecord
+  include TokenAuthenticable
   SUPERADMIN = 'superadmin'.freeze
   has_secure_password
 

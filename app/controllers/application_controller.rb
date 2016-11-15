@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+  include Knock::Authenticable
+
   private
 
   def render_errors(resource)

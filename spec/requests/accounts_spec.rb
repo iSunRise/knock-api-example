@@ -4,7 +4,9 @@ RSpec.describe 'Accounts', type: :request do
   let(:account) { FactoryGirl.create(:account) }
 
   describe 'GET /api/v1/accounts/:id' do
-    before { get "/api/v1/accounts/#{account.id}" }
+    before do
+      get "/api/v1/accounts/#{account.id}", headers: auth_header_for(account)
+    end
 
     it 'should respond with code 200' do
       expect(response.code.to_i).to eq(200)
@@ -74,7 +76,8 @@ RSpec.describe 'Accounts', type: :request do
       before do
         patch "/api/v1/accounts/#{account.id}", params: {
           account: { last_name: 'Chingachgook' }
-        }
+        },
+        headers: auth_header_for(account)
       end
 
       it 'should respond with code 200' do
@@ -94,7 +97,8 @@ RSpec.describe 'Accounts', type: :request do
       before do
         patch "/api/v1/accounts/#{account.id}", params: {
           account: { email: '', first_name: '0x00' }
-        }
+        },
+        headers: auth_header_for(account)
       end
 
       it 'should respond with code 422' do
@@ -113,7 +117,9 @@ RSpec.describe 'Accounts', type: :request do
   end
 
   describe 'DELETE /api/v1/accounts/:id' do
-    before { delete "/api/v1/accounts/#{account.id}" }
+    before do
+      delete "/api/v1/accounts/#{account.id}", headers: auth_header_for(account)
+    end
 
     it 'should respond with 200' do
       expect(response.code.to_i).to eq(200)
