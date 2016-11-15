@@ -9,3 +9,8 @@ AllCops:
     - 'db/schema.rb'
     - 'config/routes.rb'
     - 'Gemfile'
+
+Style/Documentation:
+  Exclude:
+    - 'app/*/*'
+    - 'db/*/*'
