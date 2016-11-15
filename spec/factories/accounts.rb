@@ -8,5 +8,6 @@ FactoryGirl.define do
     password 'password'
     password_confirmation 'password'
     position { Faker::Name.title }
+    software_company_name { Faker::Team.name }
   end
 end
