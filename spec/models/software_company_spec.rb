@@ -11,13 +11,13 @@ RSpec.describe SoftwareCompany, type: :model do
    :contacts,
    :vat,
    :deleted,
-   :listed].each do |field|
+   :listed,
+   :accounts].each do |field|
     it { should respond_to(field) }
   end
 
   it 'should have valid factory' do
     expect(FactoryGirl.build(:software_company)).to be_valid
   end
-
   it { expect(FactoryGirl.build(:software_company, name: nil)).to be_invalid }
 end
