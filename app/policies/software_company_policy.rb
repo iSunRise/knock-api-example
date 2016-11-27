@@ -1,9 +1,9 @@
-class SoftwareCompanyPolicy < ApplicationPolicy
+class SoftwareCompanyPolicy < ApplicationAccountPolicy
   def show?
-    record.listed || record.id == user.software_company_id
+    record.listed || record.id == account.software_company_id
   end
 
   def update?
-    record.id == user.software_company_id
+    record.id == account.software_company_id
   end
 end

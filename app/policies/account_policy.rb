@@ -1,14 +1,14 @@
-class AccountPolicy < ApplicationPolicy
+class AccountPolicy < ApplicationAccountPolicy
   def show?
-    record.id == user.id
+    record.id == account.id
   end
 
   def create?
-    user.nil?
+    account.nil?
   end
 
   def update?
-    record.id == user.id
+    record.id == account.id
   end
 
   def destroy?
