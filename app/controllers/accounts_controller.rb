@@ -1,12 +1,15 @@
 class AccountsController < ApplicationController
   before_action :authenticate_account, except: :create
+  before_action :load_account, except: :create
+  after_action :verify_authorized
 
   def show
-    render json: Account.find(params[:id])
+    render json: @account
   end
 
   def create
     account = Account.new(account_params)
+    authorize account
     if account.valid?
       account.software_company = SoftwareCompany.create(
         name: account.software_company_name
@@ -19,24 +22,31 @@ class AccountsController < ApplicationController
   end
 
   def update
-    account = Account.find(params[:id])
-    if account.update(account_params)
-      render json: account
+    if @account.update(account_params)
+      render json: @account
     else
-      render_errors(account)
+      render_errors(@account)
     end
   end
 
   def destroy
-    account = Account.find(params[:id])
-    if account.destroy
+    if @account.destroy
       head :ok
     else
-      render_errors(account)
+      render_errors(@account)
     end
   end
 
   private
+
+  def pundit_user
+    current_account
+  end
+
+  def load_account
+    @account = Account.find(params[:id])
+    authorize @account
+  end
 
   def account_params
     params.require(:account).permit(
