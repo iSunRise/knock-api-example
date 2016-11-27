@@ -17,16 +17,15 @@ RSpec.describe 'Software Companies', type: :request do
     end
 
     it 'should respond with company' do
-      expect(json['data']['attributes']['name']).to eq(company.name)
+      expect(json['software_company']['name']).to eq(company.name)
     end
   end
 
   describe 'PATCH /api/v1/software_companies/:id' do
     context 'with valid attributes' do
       before do
-        patch "/api/v1/software_companies/#{company.id}", params: {
-          software_company: { name: 'Roga i Kopita' }
-        },
+        patch "/api/v1/software_companies/#{company.id}",
+        params: { software_company: { name: 'Roga i Kopita' } },
         headers: auth_header_for(account)
       end
 
@@ -39,7 +38,7 @@ RSpec.describe 'Software Companies', type: :request do
       end
 
       it 'should respond with company' do
-        expect(json['data']['id'].to_i).to eq(company.id)
+        expect(json['software_company']['id'].to_i).to eq(company.id)
       end
     end
 

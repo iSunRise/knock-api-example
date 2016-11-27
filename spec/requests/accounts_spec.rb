@@ -13,7 +13,7 @@ RSpec.describe 'Accounts', type: :request do
     end
 
     it 'should respond with account' do
-      expect(json['data']['id'].to_i).to eq(account.id)
+      expect(json['account']['id'].to_i).to eq(account.id)
     end
   end
 
@@ -89,7 +89,7 @@ RSpec.describe 'Accounts', type: :request do
       end
 
       it 'should respond with account' do
-        expect(json['data']['id'].to_i).to eq(account.id)
+        expect(json['account']['id'].to_i).to eq(account.id)
       end
     end
 

@@ -4,7 +4,6 @@ class ApplicationController < ActionController::API
   private
 
   def render_errors(resource)
-    render json: resource, status: 422,
-           serializer: ActiveModel::Serializer::ErrorSerializer
+    render json: { errors: resource.errors }, status: 422
   end
 end
