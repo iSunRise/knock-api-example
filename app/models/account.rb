@@ -7,6 +7,7 @@ class Account < ApplicationRecord
   validates :software_company_name, presence: true, on: :create
   validates :first_name, :last_name, :middle_name, :position, :email,
             length: { maximum: 255 }
+  validates_with CorporateEmailValidator
 
   belongs_to :software_company, optional: true
 

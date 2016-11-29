@@ -32,4 +32,10 @@ RSpec.describe Account, type: :model do
     account.software_company_name = nil
     expect(account).to be_valid
   end
+
+  it 'should not allow public emails' do
+    account = FactoryGirl.build(:account)
+    account.email = 'somemail@gmail.com'
+    expect(account).to be_invalid
+  end
 end
