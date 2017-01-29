@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe 'Accounts', type: :request do
   let(:account) { FactoryGirl.create(:account) }
 
-  describe 'GET /api/v1/accounts/:id' do
+  describe 'GET /api/v1/account' do
     before do
-      get "/api/v1/accounts/#{account.id}", headers: auth_header_for(account)
+      get '/api/v1/account', headers: auth_header_for(account)
     end
 
     it 'should respond with code 200' do
@@ -17,13 +17,13 @@ RSpec.describe 'Accounts', type: :request do
     end
   end
 
-  describe 'POST /api/v1/accounts' do
+  describe 'POST /api/v1/account' do
     context 'with valid attributes' do
       subject do
         @account_params = FactoryGirl.attributes_for(:account).merge(
           software_company_name: '4x4 solutions'
         )
-        post '/api/v1/accounts', params: { account: @account_params }
+        post '/api/v1/account', params: { account: @account_params }
       end
 
       it 'should respond with code 200' do
@@ -31,16 +31,21 @@ RSpec.describe 'Accounts', type: :request do
       end
 
       it 'should create new account' do
-        expect{ subject }.to change(Account, :count).by(1)
+        expect { subject }.to change(Account, :count).by(1)
       end
 
       it 'should create new software company' do
-        expect{ subject }.to change(SoftwareCompany, :count).by(1)
+        expect { subject }.to change(SoftwareCompany, :count).by(1)
       end
 
       it 'should associate account with software company' do
         subject
         expect(Account.last.software_company.name).to eq('4x4 solutions')
+      end
+
+      it 'should respond with jwt token' do
+        subject
+        expect(json['jwt']).to be_present
       end
     end
 
@@ -49,7 +54,7 @@ RSpec.describe 'Accounts', type: :request do
         @account_params = FactoryGirl.attributes_for(:account).merge(
           software_company_name: '4x4 solutions', email: nil
         )
-        post '/api/v1/accounts', params: { account: @account_params }
+        post '/api/v1/account', params: { account: @account_params }
       end
 
       it 'should respond with code 422' do
@@ -71,10 +76,10 @@ RSpec.describe 'Accounts', type: :request do
     end
   end
 
-  describe 'PATCH /api/v1/accounts/:id' do
+  describe 'PATCH /api/v1/account' do
     context 'with valid attributes' do
       before do
-        patch "/api/v1/accounts/#{account.id}", params: {
+        patch '/api/v1/account', params: {
           account: { last_name: 'Chingachgook' }
         },
         headers: auth_header_for(account)
@@ -95,7 +100,7 @@ RSpec.describe 'Accounts', type: :request do
 
     context 'with valid attributes' do
       before do
-        patch "/api/v1/accounts/#{account.id}", params: {
+        patch '/api/v1/account', params: {
           account: { email: '', first_name: '0x00' }
         },
         headers: auth_header_for(account)
@@ -116,9 +121,9 @@ RSpec.describe 'Accounts', type: :request do
     end
   end
 
-  describe 'DELETE /api/v1/accounts/:id' do
+  describe 'DELETE /api/v1/account' do
     before do
-      delete "/api/v1/accounts/#{account.id}", headers: auth_header_for(account)
+      delete '/api/v1/account', headers: auth_header_for(account)
     end
 
     it 'should respond with 200' do

@@ -16,7 +16,9 @@ class AccountsController < ApplicationController
         name: account.software_company_name
       )
       account.save!
-      render json: account
+      render json: {
+        jwt: Knock::AuthToken.new(payload: account.to_token_payload).token
+      }
     else
       render_errors(account)
     end
@@ -45,7 +47,7 @@ class AccountsController < ApplicationController
   end
 
   def load_account
-    @account = Account.find(params[:id])
+    @account = current_account
     authorize @account
   end
 

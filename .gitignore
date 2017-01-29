@@ -23,4 +23,5 @@
 .ruby-gemset
 coverage*
 public/apidocs*
+.todo
 
