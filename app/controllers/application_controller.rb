@@ -4,7 +4,8 @@ class ApplicationController < ActionController::API
 
   private
 
-  def render_errors(resource)
-    render json: { errors: resource.errors }, status: 422
+  def render_errors(resource, errors = nil)
+    errors ||= resource.errors
+    render json: { errors: errors }, status: 422
   end
 end

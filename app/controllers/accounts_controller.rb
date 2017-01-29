@@ -9,18 +9,15 @@ class AccountsController < ApplicationController
   end
 
   def create
-    account = Account.new(account_params)
-    authorize account
-    if account.valid?
-      account.software_company = SoftwareCompany.create(
-        name: account.software_company_name
-      )
-      account.save!
+    authorize Account
+    result = SoftwareCompanies::SignUp.call(params: account_params)
+    if result.success?
       render json: {
-        jwt: Knock::AuthToken.new(payload: account.to_token_payload).token
+        software_company_id: result.software_company.id,
+        jwt: Knock::AuthToken.new(payload: result.account.to_token_payload).token
       }
     else
-      render_errors(account)
+      render_errors(nil, result.errors)
     end
   end
 
