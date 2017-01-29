@@ -1,7 +1,7 @@
 class CorporateEmailValidator < ActiveModel::Validator
   def validate(record)
     return if public_domains.exclude?(record.email.to_s.split('@').last)
-    record.errors[:email] << 'Email must belongs to company (no shared serices)'
+    record.errors[:email] << 'must belongs to company (no shared serices)'
   end
 
   private
