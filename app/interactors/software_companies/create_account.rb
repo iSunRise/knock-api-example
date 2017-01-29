@@ -4,6 +4,7 @@ module SoftwareCompanies
 
     def call
       context.account = Account.new(context.params)
+      context.account.roles = [Account::SUPERADMIN]
       context.account.software_company_id = context.software_company.id
       context.account.save!
     end
