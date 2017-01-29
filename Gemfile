@@ -32,6 +32,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.4'
   gem 'letter_opener'
   gem 'dotenv-rails'
+  gem 'awesome_print'
 end
 
 group :development do

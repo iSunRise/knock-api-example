@@ -49,6 +49,7 @@ GEM
       sshkit (>= 1.6.1, != 1.7.0)
     arel (7.1.4)
     ast (2.3.0)
+    awesome_print (1.7.0)
     bcrypt (3.1.11)
     builder (3.2.2)
     byebug (9.0.6)
@@ -233,6 +234,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.0)
+  awesome_print
   bcrypt (~> 3.1.7)
   capistrano
   capistrano-bundler
