@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161115140137) do
+ActiveRecord::Schema.define(version: 20170129162358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20161115140137) do
     t.string   "password_digest",                  null: false
     t.string   "roles",               default: [],              array: true
     t.string   "photo"
-    t.integer  "software_company_id"
+    t.integer  "software_company_id",              null: false
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.index ["software_company_id"], name: "index_accounts_on_software_company_id", using: :btree
@@ -47,4 +47,5 @@ ActiveRecord::Schema.define(version: 20161115140137) do
     t.index ["url_alias"], name: "index_software_companies_on_url_alias", using: :btree
   end
 
+  add_foreign_key "accounts", "software_companies"
 end
