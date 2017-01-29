@@ -4,7 +4,7 @@ class AccountPolicy < ApplicationAccountPolicy
   end
 
   def create?
-    account.nil?
+    true
   end
 
   def update?

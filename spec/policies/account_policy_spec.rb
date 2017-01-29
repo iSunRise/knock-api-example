@@ -15,12 +15,8 @@ RSpec.describe AccountPolicy do
   end
 
   permissions :create? do
-    it 'allows to create account for unregistered users' do
-      expect(subject).to permit(nil, Account.new)
-    end
-
-    it 'denies to create account for registered users' do
-      expect(subject).not_to permit(account, Account.new)
+    it 'allows to create account' do
+      expect(subject).to permit(nil, nil)
     end
   end
 end

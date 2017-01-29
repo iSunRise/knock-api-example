@@ -3,8 +3,9 @@ class Account < ApplicationRecord
   SUPERADMIN = 'superadmin'.freeze
   has_secure_password
 
-  validates :email, :password, :first_name, :last_name, presence: true
+  validates :email, :first_name, :last_name, presence: true
   validates :software_company_name, presence: true, on: :create
+  validates :password, presence: true, on: :create
   validates :first_name, :last_name, :middle_name, :position, :email,
             length: { maximum: 255 }
   validates :email, uniqueness: true
