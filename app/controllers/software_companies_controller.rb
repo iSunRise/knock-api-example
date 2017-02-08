@@ -18,7 +18,7 @@ class SoftwareCompaniesController < ApplicationController
   private
 
   def load_company
-    @company = SoftwareCompany.find(params[:id])
+    @company = current_account.software_company
     authorize @company
   end
 

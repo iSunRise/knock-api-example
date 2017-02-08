@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       post 'login', to: 'account_token#create'
 
       # software companies
-      resources :software_companies, only: [:show, :update] do
+      resource :software_company, only: [:show, :update] do
         # resources :accounts
         # resources :locations
         # resources :invites

@@ -2,13 +2,11 @@ require 'rails_helper'
 
 RSpec.describe 'Software Companies', type: :request do
   let(:account) { FactoryGirl.create(:account) }
-  let(:company) do
-    FactoryGirl.create(:software_company, account_ids: [account.id])
-  end
+  let(:company) { account.software_company }
 
-  describe 'GET /api/v1/software_companies/:id' do
+  describe 'GET /api/v1/software_company' do
     before do
-      get "/api/v1/software_companies/#{company.id}",
+      get "/api/v1/software_company",
           headers: auth_header_for(account)
     end
 
@@ -21,10 +19,10 @@ RSpec.describe 'Software Companies', type: :request do
     end
   end
 
-  describe 'PATCH /api/v1/software_companies/:id' do
+  describe 'PATCH /api/v1/software_company' do
     context 'with valid attributes' do
       before do
-        patch "/api/v1/software_companies/#{company.id}",
+        patch "/api/v1/software_company",
         params: { software_company: { name: 'Roga i Kopita' } },
         headers: auth_header_for(account)
       end
@@ -44,7 +42,7 @@ RSpec.describe 'Software Companies', type: :request do
 
     context 'with invalid attributes' do
       before do
-        patch "/api/v1/software_companies/#{company.id}",
+        patch "/api/v1/software_company",
               params: { software_company: { name: '' } },
               headers: auth_header_for(account)
       end
