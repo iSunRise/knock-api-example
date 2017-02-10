@@ -33,49 +33,5 @@ RSpec.describe 'Technologies', type: :request do
         match_array(['one tech', 'third tech'])
       )
     end
-
-  end
-
-
-  describe 'POST /api/v1/technologies' do
-    context 'with valid attributes' do
-      before do
-        post '/api/v1/technologies',
-             params: { technology: { name: 'Supep puper tech' } },
-             headers: auth_header_for(account)
-      end
-
-      it 'should respond with code 200' do
-        expect(response.code.to_i).to eq(200)
-      end
-
-      it 'should create technology' do
-        expect(Technology.last.name).to eq('Supep puper tech')
-      end
-
-      it 'should respond with technology' do
-        expect(json['technology']['id'].to_i).to eq(Technology.last.id)
-      end
-    end
-
-    context 'with invalid attributes' do
-      before do
-        post '/api/v1/technologies',
-             params: { technology: { name: '' } },
-             headers: auth_header_for(account)
-      end
-
-      it 'should respond with code 422' do
-        expect(response.code.to_i).to eq(422)
-      end
-
-      it 'should not create technology' do
-        expect(Technology.count).to be_zero
-      end
-
-      it 'should respond with errors' do
-        expect(json['errors']).to be_present
-      end
-    end
   end
 end

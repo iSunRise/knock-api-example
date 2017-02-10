@@ -12,7 +12,7 @@ Rails.application.routes.draw do
         # resources :invites
       end
       resource :account, only: [:show, :update, :create, :destroy]
-      resources :technologies, only: [:index, :create]
+      resources :technologies, only: [:index]
     end
   end
 end
