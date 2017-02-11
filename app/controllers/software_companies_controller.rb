@@ -25,7 +25,8 @@ class SoftwareCompaniesController < ApplicationController
   def company_params
     params.require(:software_company).permit(
       :name, :url_alias, :website, :about, :logo, :background_photo,
-      :number_of_employees, :contacts, :vat, :deleted, :listed
+      :number_of_employees, :contacts, :vat, :deleted, :listed,
+      technologies_names: []
     )
   end
 

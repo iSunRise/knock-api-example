@@ -60,5 +60,35 @@ RSpec.describe 'Software Companies', type: :request do
         expect(json['errors']).to be_present
       end
     end
+
+    context 'with existing and new technologies' do
+      let!(:tech) { FactoryGirl.create(:technology) }
+
+      subject do
+        patch '/api/v1/software_company', params: {
+                software_company: { technologies_names: ['one', tech.name] }
+              },
+              headers: auth_header_for(account)
+      end
+
+      it 'should create new technology' do
+        expect { subject }.to change(Technology, :count).by(1)
+      end
+
+      it 'should accociate new technologies with company' do
+        subject
+        expect(company.technologies.count).to eq(2)
+      end
+
+      it 'should allow to update attributes without dropping a technologies list' do
+        company.technologies << tech
+        patch '/api/v1/software_company', params: {
+                software_company: { name: 'MegaCorp' }
+              },
+              headers: auth_header_for(account)
+        expect(company.reload.name).to eq('MegaCorp')
+        expect(company.technologies.count).to eq(1)
+      end
+    end
   end
 end

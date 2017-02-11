@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :technology do
-    name { Faker::Team.sport }
+    sequence(:name) { |n| Faker::Team.sport + n.to_s }
   end
 end
