@@ -14,12 +14,16 @@ set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/lan
 set :keep_releases, 5
 set :rvm_ruby_version, '2.3.2'
 
-after 'cap deploy:published', 'deploy:generate_swagger_docs'
+after 'deploy:published', 'deploy:generate_swagger_docs'
 
 namespace :deploy do
   task :generate_swagger_docs do
     on roles(:all) do
-      execute "cd #{release_path} && SD_LOG_LEVEL=1 SWAGGER=1 bundle exec rake swagger:docs"
+      within release_path do
+        with RAILS_ENV: 'production', SWAGGER: 'true' do
+          execute :rake, 'swagger:docs'
+        end
+      end
     end
   end
 end
