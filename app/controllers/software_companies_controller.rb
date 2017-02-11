@@ -1,4 +1,5 @@
 class SoftwareCompaniesController < ApplicationController
+  include SoftwareCompanyDocumentation if ENV['SWAGGER'].present?
   before_action :authenticate_account
   before_action :load_company
   after_action :verify_authorized

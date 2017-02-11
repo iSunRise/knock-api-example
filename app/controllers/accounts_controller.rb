@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  include AccountDocumentation
+  include AccountDocumentation if ENV['SWAGGER'].present?
   before_action :authenticate_account, except: :create
   before_action :load_account, except: :create
   after_action :verify_authorized

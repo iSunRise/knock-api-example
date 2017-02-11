@@ -1,4 +1,5 @@
 class TechnologiesController < ApplicationController
+  include TechnologyDocumentation if ENV['SWAGGER'].present?
   before_action :authenticate_account, only: :create
 
   def index

@@ -2,8 +2,13 @@ module AccountDocumentation
   extend ActiveSupport::Concern
 
   included do
-    next if ENV['SWAGGER'].blank?
-    swagger_controller :accounts, 'Accounts controller'
+    [:show, :create, :update, :destroy].each do |api_action|
+      swagger_api api_action do
+        param :header, 'Authentication-Token', :string, :required, 'Authentication token'
+      end
+    end
+
+    swagger_controller :accounts, 'Accounts Controller'
 
     swagger_api :show do
       summary 'Returns current account'
@@ -20,7 +25,7 @@ module AccountDocumentation
       param :account, 'account[phone]', :string, false, 'Phone'
       param :account, 'account[password]', :string, :required, 'Account password'
       param :account, 'account[software_company_name]', :string, :required, 'New company name (company will be created automatically)'
-      response :ok, "Success", :Account
+      response :ok, 'Success', :Account
       response :unauthorized
       response :unprocessable_entity, 'Unprocessable Entity', errors: { field: "can't be blank" }
     end
@@ -39,7 +44,7 @@ module AccountDocumentation
 
     swagger_api :destroy do
       summary 'Removes account record'
-      response :ok, "Success", :Account
+      response :ok, 'Success'
       response :unauthorized
     end
   end
