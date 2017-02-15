@@ -13,5 +13,5 @@ class Account < ApplicationRecord
 
   belongs_to :software_company
 
-  attr_accessor :software_company_name
+  attr_accessor :software_company_name, :phone_verification_code
 end

@@ -2,6 +2,10 @@ class PhoneVerification < ApplicationRecord
   before_save :tokenize_number, :generate_pin_code
   validates :phone_number, presence: true, phone: true
 
+  def self.find_by_number(phone)
+    find_by(phone_number: StringTokenizer.tokenize(phone), matched: false)
+  end
+
   def pin_valid?(pin_code)
     if BCrypt::Password.new(pin_token) == pin_code
       update_columns(matched: true)

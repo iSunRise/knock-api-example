@@ -22,7 +22,8 @@ module AccountDocumentation
       param :account, 'account[first_name]', :string, :required, 'First name'
       param :account, 'account[last_name]', :string, :required, 'Last name'
       param :account, 'account[position]', :string, false, 'Position'
-      param :account, 'account[phone]', :string, false, 'Phone'
+      param :account, 'account[phone_number]', :string, true, 'Phone number'
+      param :account, 'account[phone_verification_code]', :string, false, 'Phone'
       param :account, 'account[password]', :string, :required, 'Account password'
       param :account, 'account[software_company_name]', :string, :required, 'New company name (company will be created automatically)'
       response :ok, 'Success', :Account

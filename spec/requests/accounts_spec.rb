@@ -18,10 +18,16 @@ RSpec.describe 'Accounts', type: :request do
   end
 
   describe 'POST /api/v1/account' do
+    before do
+      PhoneVerification.create(phone_number: '380631234567')
+    end
+
     context 'with valid attributes' do
       subject do
         @account_params = FactoryGirl.attributes_for(:account).merge(
-          software_company_name: '4x4 solutions'
+          software_company_name: '4x4 solutions',
+          phone_verification_code: '1111',
+          phone_number: '380631234567'
         )
         post '/api/v1/account', params: { account: @account_params }
       end
