@@ -3,7 +3,9 @@ class PhoneVerification < ApplicationRecord
   validates :phone_number, presence: true, phone: true
 
   def self.find_by_number(phone)
-    find_by(phone_number: StringTokenizer.tokenize(phone), matched: false)
+    order('id DESC').find_by(
+      phone_number: StringTokenizer.tokenize(phone), matched: false
+    )
   end
 
   def pin_valid?(pin_code)
