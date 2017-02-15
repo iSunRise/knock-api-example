@@ -13,7 +13,6 @@ class AccountsController < ApplicationController
     result = SoftwareCompanies::SignUp.call(params: account_params)
     if result.success?
       render json: {
-        software_company_id: result.software_company.id,
         jwt: Knock::AuthToken.new(payload: result.account.to_token_payload).token
       }
     else
