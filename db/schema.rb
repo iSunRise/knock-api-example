@@ -63,13 +63,13 @@ ActiveRecord::Schema.define(version: 20170215170737) do
   end
 
   create_table "phone_verifications", force: :cascade do |t|
-    t.string   "number",                     null: false
+    t.string   "phone_number",                 null: false
     t.string   "pin_token"
-    t.integer  "attempts",   default: 0
-    t.boolean  "matched",    default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.index ["number"], name: "index_phone_verifications_on_number", using: :btree
+    t.integer  "attempts",     default: 0
+    t.boolean  "matched",      default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["phone_number"], name: "index_phone_verifications_on_phone_number", using: :btree
   end
 
   create_table "software_companies", force: :cascade do |t|

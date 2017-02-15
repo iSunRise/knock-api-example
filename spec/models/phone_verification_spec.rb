@@ -1,27 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe PhoneVerification, type: :model do
-  it { should validate_presence_of(:number) }
+  it { should validate_presence_of(:phone_number) }
 
   describe 'before_save' do
     it 'should tokenize phone number' do
-      pv = PhoneVerification.create(number: '+38(050)123-45-67')
-      expect(pv.reload.number).to eq('380501234567')
+      pv = PhoneVerification.create(phone_number: '+38(050)123-45-67')
+      expect(pv.reload.phone_number).to eq('380501234567')
     end
 
     it 'should create random token' do
-      pv = PhoneVerification.create(number: '+38(050)123-45-67')
+      pv = PhoneVerification.create(phone_number: '+38(050)123-45-67')
       expect(pv.reload.pin_token).to be_present
     end
   end
 
   it 'should validate phone number' do
-    pv = PhoneVerification.new(number: '+38(050)123-4-67')
+    pv = PhoneVerification.new(phone_number: '+38(050)123-4-67')
     expect(pv).to be_invalid
   end
 
   describe '#pin_valid?' do
-    let(:pv) { PhoneVerification.create(number: '+38(050)123-45-67') }
+    let(:pv) { PhoneVerification.create(phone_number: '+38(050)123-45-67') }
 
     context 'with valid pin code' do
       it 'should return true' do
