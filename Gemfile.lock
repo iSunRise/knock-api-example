@@ -134,6 +134,7 @@ GEM
     parser (2.3.1.4)
       ast (~> 2.2)
     pg (0.19.0)
+    phonelib (0.6.9)
     powerpack (0.1.1)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -259,6 +260,7 @@ DEPENDENCIES
   letter_opener
   listen (~> 3.0.5)
   pg
+  phonelib
   pry-byebug
   puma (~> 3.0)
   pundit
