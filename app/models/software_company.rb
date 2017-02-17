@@ -9,6 +9,7 @@ class SoftwareCompany < ApplicationRecord
   accepts_nested_attributes_for :technologies
 
   mount_uploader :logo, LogoUploader
+  mount_uploader :background_photo, BackgroundPhotoUploader
 
   def technologies_names=(names)
     names_tokens = names.map do |n|
