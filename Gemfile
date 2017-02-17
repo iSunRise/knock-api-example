@@ -23,23 +23,23 @@ gem 'pundit'
 
 gem 'knock'
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'rack-cors'
 
 gem 'swagger-docs'
 
-
 gem 'interactor', '~> 3.0'
 
-
-gem 'rack-cors'
-
 gem 'phonelib'
+
+gem 'carrierwave-aws'
+gem 'mini_magick'
+gem 'dotenv-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug', platform: :mri
   gem 'rspec-rails', '~> 3.4'
   gem 'letter_opener'
-  gem 'dotenv-rails'
   gem 'awesome_print'
 end
 

@@ -8,13 +8,7 @@ class SoftwareCompany < ApplicationRecord
 
   accepts_nested_attributes_for :technologies
 
-  def [](val)
-    if val.to_s == 'technologies_names'
-      technologies.pluck :name
-    else
-      super
-    end
-  end
+  mount_uploader :logo, LogoUploader
 
   def technologies_names=(names)
     names_tokens = names.map do |n|
