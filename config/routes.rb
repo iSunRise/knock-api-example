@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       end
       resource :account, only: [:show, :update, :create, :destroy]
       resources :technologies, only: [:index]
-      resources :phone_verifications, only: [:create]
+      resource :phone_verification, only: [:create]
     end
   end
 end

@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'Phone Verifications', type: :request do
 
-  describe 'POST /api/v1/phone_verifications' do
+  describe 'POST /api/v1/phone_verification' do
     context 'with valid phone number' do
       before do
-        post '/api/v1/phone_verifications',
+        post '/api/v1/phone_verification',
              params: { phone_number: '380631234567'}
       end
 
@@ -20,7 +20,7 @@ RSpec.describe 'Phone Verifications', type: :request do
 
     context 'with invalid phone number' do
       before do
-        post '/api/v1/phone_verifications',
+        post '/api/v1/phone_verification',
              params: { phone_number: '38063123456'}
       end
 
