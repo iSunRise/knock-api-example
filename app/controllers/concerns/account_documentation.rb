@@ -37,7 +37,9 @@ module AccountDocumentation
       param :account, 'account[last_name]', :string, :optional, 'Last name'
       param :account, 'account[position]', :string, :optional, 'Position'
       param :account, 'account[email]', :string, :optional, 'Account email'
-      param :account, 'account[password]', :string, :optional, 'Account password'
+      param :account, 'account[phone_number]', :string, :optional, 'Phone number'
+      param :account, 'account[two_factor_auth_enabled]', :boolean, :optional, 'Two factor auth enale/disable'
+      param :account, 'account[password]', :string, :optional, 'Account password (if want to update)'
       response :ok, "Success", :Account
       response :unauthorized
       response :unprocessable_entity, 'Unprocessable Entity', errors: { field: "can't be blank" }

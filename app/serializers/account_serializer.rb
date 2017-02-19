@@ -1,4 +1,4 @@
 class AccountSerializer < ActiveModel::Serializer
   attributes :id, :first_name, :last_name, :middle_name, :position, :email,
-             :roles, :photo, :software_company_id
+             :roles, :photo, :phone_number, :two_factor_auth_enabled
 end

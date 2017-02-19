@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170215184637) do
+ActiveRecord::Schema.define(version: 20170218160936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,14 +20,15 @@ ActiveRecord::Schema.define(version: 20170215184637) do
     t.string   "last_name"
     t.string   "middle_name"
     t.string   "position"
-    t.string   "email",                            null: false
-    t.string   "password_digest",                  null: false
-    t.string   "roles",               default: [],              array: true
+    t.string   "email",                                   null: false
+    t.string   "password_digest",                         null: false
+    t.string   "roles",                   default: [],                 array: true
     t.string   "photo"
-    t.integer  "software_company_id",              null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.integer  "software_company_id",                     null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.string   "phone_number"
+    t.boolean  "two_factor_auth_enabled", default: false
     t.index ["email"], name: "index_accounts_on_email", unique: true, using: :btree
     t.index ["software_company_id"], name: "index_accounts_on_software_company_id", using: :btree
   end

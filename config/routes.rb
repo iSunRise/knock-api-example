@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     scope :v1 do
       # generic sign in for all roles
       post 'login', to: 'account_token#create'
+      post 'login/two_factor_auth', to: 'account_token#two_factor_auth'
 
       # software companies
       resource :software_company, only: [:show, :update] do
