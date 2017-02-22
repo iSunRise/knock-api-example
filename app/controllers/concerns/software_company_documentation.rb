@@ -30,7 +30,9 @@ module SoftwareCompanyDocumentation
       param :form, 'software_company[vat]', :string, :optional,              'VAT code'
       param :form, 'software_company[listed]', :boolean, :optional,           'Visible on site'
       param :form, 'software_company[technologies_names]', :array, :optional,           'List of technologies (array of strings)'
-
+      param :form, 'software_company[foundation_date]', :date, :optional, 'Foundation date'
+      param :form, 'software_company[average_hairly_rate]', :integer, :optional, 'Average Hairly Rate'
+      param :form, 'software_company[minimum_project_size]', :integer, :optional, 'Minimum Project Size'
       response :ok, "Success"
       response :unauthorized
       response :unprocessable_entity, 'Unprocessable Entity', errors: { field: "can't be blank" }

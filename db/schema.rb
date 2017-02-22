@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170218160936) do
+ActiveRecord::Schema.define(version: 20170222133705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20170218160936) do
   end
 
   create_table "software_companies", force: :cascade do |t|
-    t.string   "name",                                null: false
+    t.string   "name",                                 null: false
     t.string   "url_alias"
     t.string   "website"
     t.text     "about"
@@ -84,10 +84,13 @@ ActiveRecord::Schema.define(version: 20170218160936) do
     t.integer  "number_of_employees"
     t.text     "contacts"
     t.string   "vat"
-    t.boolean  "deleted",             default: false
-    t.boolean  "listed",              default: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.boolean  "deleted",              default: false
+    t.boolean  "listed",               default: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.date     "foundation_date"
+    t.integer  "average_hairly_rate"
+    t.integer  "minimum_project_size"
     t.index ["url_alias"], name: "index_software_companies_on_url_alias", using: :btree
   end
 
