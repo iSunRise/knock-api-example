@@ -8,7 +8,7 @@ module SoftwareCompanyDocumentation
       end
     end
 
-    swagger_controller :software_companies, 'Software Companies Controller'
+    swagger_controller :software_companies, 'Software Companies Controller', resource_path: 'Software (Outsourcing) Companies'
 
     swagger_api :show do
       summary "Returns current account's company"
