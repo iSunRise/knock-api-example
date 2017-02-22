@@ -8,7 +8,7 @@ module AccountDocumentation
       end
     end
 
-    swagger_controller :accounts, 'Accounts Controller', resource_path: 'Accounts &amp; Sign Up'
+    swagger_controller :accounts, 'Accounts Controller', resource_path: 'Accounts and Sign Up'
 
     swagger_api :show do
       summary 'Returns current account'
