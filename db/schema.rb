@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228145347) do
+ActiveRecord::Schema.define(version: 20170228152619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,12 +94,28 @@ ActiveRecord::Schema.define(version: 20170228145347) do
     t.index ["url_alias"], name: "index_software_companies_on_url_alias", using: :btree
   end
 
+  create_table "software_company_specialties", force: :cascade do |t|
+    t.integer  "software_company_id", null: false
+    t.integer  "specialty_id",        null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["software_company_id", "specialty_id"], name: "software_company_specialties_index", unique: true, using: :btree
+  end
+
   create_table "software_company_technologies", force: :cascade do |t|
     t.integer  "software_company_id", null: false
     t.integer  "technology_id",       null: false
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.index ["software_company_id", "technology_id"], name: "software_company_technologies_index", unique: true, using: :btree
+  end
+
+  create_table "specialties", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.string   "token",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_specialties_on_token", unique: true, using: :btree
   end
 
   create_table "technologies", force: :cascade do |t|

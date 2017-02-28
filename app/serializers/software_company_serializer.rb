@@ -9,6 +9,6 @@ class SoftwareCompanySerializer < ActiveModel::Serializer
   end
 
   def specialties_names
-    []
+    object.specialties.pluck(:name)
   end
 end
