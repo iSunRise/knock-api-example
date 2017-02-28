@@ -3,7 +3,7 @@ class TechnologiesController < ApplicationController
   before_action :authenticate_account, only: :create
 
   def index
-    technologies = Technology.limit(20).order('name ASC')
+    technologies = Technology.limit(50).order('name ASC')
     technologies = technologies.where(name_query) if params[:name].present?
     render json: technologies
   end

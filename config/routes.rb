@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       end
       resource :account, only: [:show, :update, :create, :destroy]
       resources :technologies, only: [:index]
+      resources :specialties, only: [:index]
       resource :phone_verification, only: [:create]
     end
   end
