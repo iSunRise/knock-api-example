@@ -8,8 +8,10 @@ Rails.application.routes.draw do
 
       # software companies
       resource :software_company, only: [:show, :update] do
+        scope module: 'software_companies' do
+          resources :offices, except: [:show, :edit]
+        end
         # resources :accounts
-        # resources :locations
         # resources :invites
       end
       resource :account, only: [:show, :update, :create, :destroy]
