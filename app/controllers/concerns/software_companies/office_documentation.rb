@@ -9,7 +9,7 @@ module SoftwareCompanies
         end
       end
 
-      swagger_controller :offices, 'Software Companies Offices', resource_path: 'Software (Outsourcing) Companies Offices'
+      swagger_controller :offices, 'Offices', resource_path: 'Offices'
 
       swagger_api :index do
         summary "Returns offices of current account's company"
