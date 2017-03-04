@@ -19,8 +19,9 @@ module SoftwareCompanies
     end
 
     def phone_verified?
-      pv = PhoneVerification.find_by_number(@account.phone_number)
-      return true if pv.present? && pv.pin_valid?(@account.phone_verification_code)
+      return true if PhoneVerification.pin_valid?(
+        @account.phone_number, @account.phone_verification_code
+      )
       @account.errors.add(:phone_verification_code, 'invalid')
       false
     end

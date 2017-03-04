@@ -2,12 +2,14 @@ class PhoneVerification < ApplicationRecord
   before_save :tokenize_number, :generate_pin_code
   validates :phone_number, presence: true, phone: true
 
+  scope :fresh, -> { where('created_at > ?', Time.zone.now - 10.minutes) }
+  scope :unmatched, -> { where(matched: false) }
+
   attr_reader :pin_code
 
-  def self.find_by_number(phone)
-    order('id DESC').find_by(
-      phone_number: StringTokenizer.tokenize(phone), matched: false
-    )
+  def self.pin_valid?(phone_number, pin_code)
+    pv = fresh.unmatched.find_by(phone_number: StringTokenizer.tokenize(phone_number))
+    pv.present? && pv.pin_valid?(pin_code)
   end
 
   def pin_valid?(pin_code)
