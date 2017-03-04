@@ -36,5 +36,24 @@ RSpec.describe 'Phone Verifications', type: :request do
         expect(json['errors']['phone_number']).to be_present
       end
     end
+
+    context 'with gateway error' do
+      before do
+        post '/api/v1/phone_verification',
+             params: { phone_number: '15005550001'}
+      end
+
+      it 'should respond with 422' do
+        expect(response.code.to_i).to eq(422)
+      end
+
+      it 'should not create phone verification record' do
+        expect(PhoneVerification.count).to eq(0)
+      end
+
+      it 'should respond with errors' do
+        expect(json['errors']['phone_number']).to be_present
+      end
+    end
   end
 end

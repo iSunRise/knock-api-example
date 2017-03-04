@@ -3,10 +3,11 @@ class PhoneVerificationsController < ApplicationController
 
   def create
     pv = PhoneVerification.new(phone_number: params[:phone_number])
-    if pv.save
+    result = PhoneVerifications::SendSMS.call(phone_verification: pv)
+    if result.success?
       render json: { }
     else
-      render_errors(pv)
+      render_errors(nil, result.errors)
     end
   end
 end

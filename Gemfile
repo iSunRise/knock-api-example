@@ -30,6 +30,7 @@ gem 'swagger-docs'
 gem 'interactor', '~> 3.0'
 
 gem 'phonelib'
+gem 'twilio-ruby', '~> 4.11.1'
 
 gem 'carrierwave-aws'
 gem 'mini_magick'
