@@ -22,6 +22,11 @@ class PhoneVerification < ApplicationRecord
     end
   end
 
+  def masked_phone_number
+    phone_number[3..-4] = '-xxxx-'
+    '+' << phone_number
+  end
+
   private
 
   def tokenize_number
